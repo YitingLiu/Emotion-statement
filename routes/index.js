@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Emotion = require("../models/model.js");
 
 router.get('/',function(req,res){
-  res.render('add-copy.html')
+  res.render('add.html')
 });
 
 // // simple route to render an HTML page that pulls data from our server and displays it on a page
