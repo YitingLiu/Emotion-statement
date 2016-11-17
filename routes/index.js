@@ -49,32 +49,45 @@ router.post('/api/create', function(req, res){
     console.log(req.body);
 
     // pull out the information from the req.body
-    var name = req.body.name;
-    var age = req.body.age;
-    var tags = req.body.tags.split(","); // split string into array
-    var weight = req.body.weight;
-    var color = req.body.color;
-    var url = req.body.url;
+    var emotions = req.body.emotions.split(",");
+    var things = req.body.things.split(",");
+    var people = req.body.people.split(","); // split string into array
+    var place = req.body.place;
+    
+    var date = req.body.date;
+    var steps = req.body.steps;    
+    var sleepQuality = req.body.date;
+    var sleepQuality = req.body.date;
+    var sleepTime = req.body.sleepTime;    
+    var weather = req.body.weather;
+    var temp = req.body.temp;    
+
 
     // hold all this data in an object
     // this object should be structured the same way as your db model
-    var animalObj = {
-      name: name,
-      age: age,
-      tags: tags,
-      description: {
-        weight: weight,
-        color: color
-      },
-      url: url
+    var emotionObj = {
+      emotions: emotions,
+      things: things,
+      people: people,
+      place: place,
+
+      date: date,
+
+      steps: steps,
+
+      sleepQuality: sleepQuality,
+      sleepTime: sleepTime,
+
+      weather: weather,
+      temp:temp
     };
 
     // create a new animal model instance, passing in the object
-    var animal = new Animal(animalObj);
+    var emotion = new Emotion(emotionObj);
 
     // now, save that animal instance to the database
     // mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save    
-    animal.save(function(err,data){
+    emotion.save(function(err,data){
       // if err saving, respond back with error
       if (err){
         var error = {status:'ERROR', message: 'Error saving animal'};
