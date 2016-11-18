@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ADD</title>
 
-    <!-- Custom Font - Change 'Muli' to the font you want -->
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <!-- Custom Font - Change 'Comfortaa' to the font you want -->
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Custom CSS inside CSS folder -->
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href=" css/style.css">
 
     <style>
-    body{
+    body {
+      font-family: Comfortaa;
     }
     .section{
       color:white;
@@ -30,6 +31,66 @@
       background: -moz-linear-gradient(-135deg, #B0EBD5, #88C6D8); 
       background: linear-gradient(-135deg, #B0EBD5, #88C6D8);
     }
+
+    #addFactsPage {
+      background: #EAC7A8;  
+      background: -webkit-linear-gradient(-135deg, #EAC7A8, #D88194);  
+      background: -o-linear-gradient(-135deg, #EAC7A8, #D88194);   
+      background: -moz-linear-gradient(-135deg, #EAC7A8, #D88194); 
+      background: linear-gradient(-135deg, #EAC7A8, #D88194);    
+    }
+
+    #addFactsPage input {
+      font-size:20px;
+    }
+
+    .container {
+      padding-top: 5%;
+      height: 94%;
+    }
+
+    .col-md-4 {
+      padding: -15px;
+      height: 45%;
+    }
+
+    .qsCard {
+      background-color:rgba(255,255,255,0.2);
+      height:95%;
+      margin-top: 5px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    input {
+      color:grey;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    #submit {
+      position:absolute;
+      margin-top: 0;
+      padding-top: 0;
+      bottom: -17px;
+      height:6%;
+      width: 100%
+    }
+
+    #submit input {
+      background: #EDE0AC;  
+      background: -webkit-linear-gradient(-135deg, #EDE0AC, #CDD785);  
+      background: -o-linear-gradient(-135deg, #EDE0AC, #CDD785);   
+      background: -moz-linear-gradient(-135deg, #EDE0AC, #CDD785); 
+      background: linear-gradient(-135deg, #EDE0AC, #CDD785);        
+      border: none;
+      width: 100%;
+    }
+
+
+
     </style>
 
 
@@ -41,39 +102,74 @@
     <![endif]-->
   </head>
   <body>
-
-  <form action="/api/create" method="POST">
+    <form action="/api/create" method="POST">
 
     <div id="fullpage">
       <div class="section" id="addEmotionsPage">
-        <canvas id="addEmotionsCanvas" style="border:1px solid #000000;"></canvas> 
-        <div class="qs">How<br>Are your feeling?<br>
-        Joy,Sadness,Trust,Disgust,Fear,Anger,Surprise,Anitcipation</div>
-        <input type="text" name="emotions" placeholder="How are you feeling?"><br>
+          <div class="container">
+
+<!--         <canvas id="addEmotionsCanvas" style="border:1px solid #000000;"></canvas> 
+ -->        <h2>How<br>Are your feeling?</h2>
+            <h4>Joy,Sadness,Trust,Disgust,Fear,Anger,Surprise,Anitcipation</h4>
+            <input type="text" name="emotions" placeholder="How are you feeling?">
+          </div>
       </div>
 
-      <div class="section" style="background-color:#E66B6D">
-        What are your doing?<br>
-        <input type="text" name="things" placeholder="What are you doing?"><br>
-        Who are you with?<br>
-        <input type="text" name="people" placeholder="Who are you with?"><br>
-        Where are you?<br>
-        <input type="text" name="place" placeholder="Where are you?"><br>
+      <div class="section" id="addFactsPage">
+        <div class="container">
+             <div class="col-md-4">
+              <div class="qsCard">
+                <h3>What are your doing?</h3>
+                <input type="text" name="things" placeholder="What are you doing?">
+              </div>
+            </div>
 
-        How many steps have you taken today?<br>
-        <input type="text" name="steps" placeholder="Enter Steps"><br>
+            <div class="col-md-4">
+              <div class="qsCard">
+                <h3>Who are you with?</h3>
+                <input type="text" name="people" placeholder="Who are you with?">
+              </div>
+            </div>
 
-        How was your sleep last night?<br>
-        <input type="text" name="sleepQuality" placeholder="Enter sleep quality"><br>
-        <input type="text" name="sleepTime" placeholder="How long did you sleep?"><br>
+            <div class="col-md-4">
+              <div class="qsCard">
+                <h3>Where are you?</h3>
+                <input type="text" name="place" placeholder="Where are you?">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="qsCard">
+                <h3>How many steps have you taken today?</h3>
+                <input type="text" name="steps" placeholder="Enter Steps">
+              </div>
+            </div>
 
-        What' the weather now?<br>
-        <input type="text" name="weather" placeholder="Enter weather"><br>
-        <input type="text" name="temp" placeholder="Enter temperature"><br>
-        <input type="submit" value="Submit">
+            <div class="col-md-4">
+              <div class="qsCard">
+                <h3>How was your sleep last night?</h3>
+                <input type="text" name="sleepQuality" placeholder="Enter sleep quality">
+                <input type="text" name="sleepTime" placeholder="How long did you sleep?">
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="qsCard">
+                <h3>What' the weather now?</h3>
+                <input type="text" name="weather" placeholder="Enter weather"><br>
+                <input type="text" name="temp" placeholder="Enter temperature"><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid" id="submit">
+            <div class="row">
+              <input type="submit" value="Submit">
+            </div>
+          </div>
       </div>
     </div>
   </form>
+
   
   </body>
 
