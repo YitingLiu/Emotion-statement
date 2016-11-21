@@ -15,27 +15,27 @@ router.get('/',function(req,res){
 //   res.render('show-pets.html')
 // })
 
-// /**
-//  * GET '/'
-//  * Default home route. Just relays a success message back.
-//  * @param  {Object} req
-//  * @return {Object} json
-//  */
-// // router.get('/', function(req, res) {
+/**
+ * GET '/'
+ * Default home route. Just relays a success message back.
+ * @param  {Object} req
+ * @return {Object} json
+ */
+// router.get('/', function(req, res) {
   
-// //   var jsonData = {
-// //   	'name': 'node-express-api-boilerplate',
-// //   	'api-status':'OK'
-// //   }
+//   var jsonData = {
+//   	'name': 'node-express-api-boilerplate',
+//   	'api-status':'OK'
+//   }
 
-// //   // respond with json data
-// //   res.json(jsonData)
-// // });
+//   // respond with json data
+//   res.json(jsonData)
+// });
 
-// // // simple route to show an HTML page
-// // router.get('/sample-page', function(req,res){
-// //   res.render('sample.html')
-// // })
+// simple route to show an HTML page
+// router.get('/sample-page', function(req,res){
+//   res.render('sample.html')
+// })
 
 /**
  * POST '/api/create'
@@ -100,13 +100,18 @@ router.post('/api/create', function(req, res){
       // now return the json data of the new animal
       var jsonData = {
         status: 'OK',
-        animal: data
+        emotion: data
       }
 
-      return res.json(jsonData);
+      // return res.json(jsonData);
+      return res.redirect('/results');
 
     })  
 });
+
+router.get('/results',function(req,res){
+  res.render('results.html');
+})
 
 // // /**
 // //  * GET '/api/get/:id'
@@ -139,34 +144,37 @@ router.post('/api/create', function(req, res){
 //   })
 // })
 
-// // /**
-// //  * GET '/api/get'
-// //  * Receives a GET request to get all animal details
-// //  * @return {Object} JSON
-// //  */
+/**
+ * GET '/api/get'
+ * Receives a GET request to get all animal details
+ * @return {Object} JSON
+ */
 
-// router.get('/api/get', function(req, res){
+router.get('/api/get', function(req, res){
 
-//   // mongoose method to find all, see http://mongoosejs.com/docs/api.html#model_Model.find
-//   Animal.find(function(err, data){
-//     // if err or no animals found, respond with error 
-//     if(err || data == null){
-//       var error = {status:'ERROR', message: 'Could not find animals'};
-//       return res.json(error);
-//     }
+  // mongoose method to find all, see http://mongoosejs.com/docs/api.html#model_Model.find
+  Emotion.find(function(err, data){
+    // if err or no animals found, respond with error 
+    if(err || data == null){
+      var error = {status:'ERROR', message: 'Could not find emotions'};
+      return res.json(error);
+    }
 
-//     // otherwise, respond with the data 
+    // otherwise, respond with the data 
 
-//     var jsonData = {
-//       status: 'OK',
-//       animals: data
-//     } 
+    var jsonData = {
+      status: 'OK',
+      // animals: data
+      emotions:data
+    } 
 
-//     res.json(jsonData);
+    // console.log(jsonData.emotions[0].emotions);
 
-//   })
+    res.json(jsonData);
 
-// })
+  })
+
+})
 
 // // /**
 // //  * GET '/api/search'
