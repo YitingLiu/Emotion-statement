@@ -49,17 +49,17 @@ router.post('/api/create', function(req, res){
     console.log(req.body);
 
     // pull out the information from the req.body
-    var emotions = req.body.emotions.split(",");
-    var things = req.body.things.split(",");
-    var people = req.body.people.split(","); // split string into array
-    var place = req.body.place;
+    var emotions = req.body.emotions.toLowerCase().split(",");
+    var things = req.body.things.toLowerCase().split(",");
+    var people = req.body.people.toLowerCase().split(","); // split string into array
+    var place = req.body.place.toLowerCase();
     
     var date = req.body.date;
     var steps = req.body.steps;    
     var sleepQuality = req.body.date;
     var sleepQuality = req.body.date;
     var sleepTime = req.body.sleepTime;    
-    var weather = req.body.weather;
+    var weather = req.body.weather.toLowerCase();
     var temp = req.body.temp;    
 
 
@@ -100,7 +100,7 @@ router.post('/api/create', function(req, res){
       // now return the json data of the new animal
       var jsonData = {
         status: 'OK',
-        emotion: data
+        record: data
       }
 
       // return res.json(jsonData);
@@ -165,7 +165,7 @@ router.get('/api/get', function(req, res){
     var jsonData = {
       status: 'OK',
       // animals: data
-      emotions:data
+      record:data
     } 
 
     // console.log(jsonData.emotions[0].emotions);

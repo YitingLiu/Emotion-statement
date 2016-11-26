@@ -19,6 +19,11 @@
     body {
       font-family: Comfortaa;
     }
+
+    h1 {
+      font-size:60px;
+    }
+
     .section{
       color:white;
       font-size: 60px;
@@ -30,6 +35,46 @@
       background: -o-linear-gradient(-135deg, #B0EBD5, #88C6D8);   
       background: -moz-linear-gradient(-135deg, #B0EBD5, #88C6D8); 
       background: linear-gradient(-135deg, #B0EBD5, #88C6D8);
+    }
+
+    #canvasContainer{
+      position:fixed;
+      top:0;
+      left:0;
+    }
+
+    h4 {
+      color:white;
+    }
+
+    .selected {
+      color:grey;
+    }
+
+    #emotionInput{
+      position:absolute;
+      bottom:55%;
+      width: 80%;
+    }
+
+    #next {
+      position:absolute;
+      margin-top: 0;
+      padding-top: 0;
+      bottom: 48.9%;
+      height:6%;
+      width: 100%
+    }
+
+    #next input {
+      background: #EAC7A8;  
+      background: -webkit-linear-gradient(-135deg, #EAC7A8, #D88194);  
+      background: -o-linear-gradient(-135deg, #EAC7A8, #D88194);   
+      background: -moz-linear-gradient(-135deg, #EAC7A8, #D88194); 
+      background: linear-gradient(-135deg, #EAC7A8, #D88194); 
+      border: none;
+      width: 100%; 
+      font-size:20px;   
     }
 
     #addFactsPage {
@@ -46,7 +91,7 @@
 
     .container {
       padding-top: 5%;
-      height: 94%;
+      height: 100%;
     }
 
     .col-md-4 {
@@ -121,19 +166,29 @@
     <![endif]-->
   </head>
   <body>
-    <form action="/api/create" method="POST">
+    <form action="/api/create" method="POST" autocomplete="off">
 
     <div id="fullpage">
       <div class="section" id="addEmotionsPage">
           <div class="container">
 
-<!--         <canvas id="addEmotionsCanvas" style="border:1px solid #000000;"></canvas> 
- -->        <h2>How<br>Are your feeling?</h2>
-            <h4 onclick="getValue(event)">Joy</h4>
+            <h1>How<br>Are your feeling?</h1>
+            <div id="canvasContainer"></div>
+<!--             <h4 onclick="getValue(event)">Joy</h4>
             <h4 onclick="getValue(event)">Sadness</h4>
-            <h4 onclick="getValue(event)">Trust,Disgust,Fear,Anger,Surprise,Anitcipation</h4>Trust,Disgust,Fear,Anger,Surprise,Anitcipation
+            <h4 onclick="getValue(event)">Trust</h4>
+            <h4 onclick="getValue(event)">Fear</h4>
+            <h4 onclick="getValue(event)">Anger</h4>
+            <h4 onclick="getValue(event)">Surprise</h4>
+            <h4 onclick="getValue(event)">Anitcipation</h4> -->
             <input id="emotionInput" type="text" name="emotions" placeholder="How are you feeling?">
           </div>
+
+          <div class="container-fluid" id="next">
+            <div class="row">
+              <input type="button" value="NEXT">
+            </div>
+          </div>          
       </div>
 
       <div class="section" id="addFactsPage">
@@ -190,7 +245,6 @@
       </div>
     </div>
   </form>
-
   
   </body>
 
@@ -199,15 +253,16 @@
 
     <!-- CUSTOM JS -->
     <script type="text/javascript" src="js/p5.js"></script>
+    <script type="text/javascript" src="js/p5.dom.js"></script>
     <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/add.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
         $('#fullpage').fullpage();
       });
     </script>
-
 
 </html>
 

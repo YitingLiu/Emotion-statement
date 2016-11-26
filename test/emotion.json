@@ -1,0 +1,84 @@
+{
+"status": "OK",
+"record": [
+{
+"_id": "5838c968906e950f3f875da0",
+"place": "soho",
+"steps": 5674,
+"sleepTime": 9.44,
+"weather": "cloudy",
+"temp": 11,
+"__v": 0,
+"date": "2016-11-25T23:29:44.716Z",
+"people": [
+"nobody"
+],
+"things": [
+"shopping"
+],
+"emotions": [
+"joy",
+"surprise"
+]
+},
+{
+"_id": "5838c9c0906e950f3f875da2",
+"place": "721 broadway",
+"steps": 9207,
+"sleepTime": 7,
+"weather": "most clear",
+"temp": 6,
+"__v": 0,
+"date": "2016-11-25T23:31:12.105Z",
+"people": [
+"an",
+" xiqiao",
+" sam"
+],
+"things": [
+"itp class"
+],
+"emotions": [
+"anticipation"
+]
+},
+{
+"_id": "5838c9f4906e950f3f875da3",
+"place": "721 broadway",
+"steps": 7280,
+"sleepTime": 5.43,
+"weather": "showers",
+"temp": 8,
+"__v": 0,
+"date": "2016-11-25T23:32:04.073Z",
+"people": [
+"an"
+],
+"things": [
+"itp assignment"
+],
+"emotions": [
+"joy"
+]
+},
+{
+"_id": "5838ca30906e950f3f875da4",
+"place": "128 thompson st.",
+"steps": 10034,
+"sleepTime": 9.44,
+"weather": "rain",
+"temp": 5,
+"__v": 0,
+"date": "2016-11-25T23:33:04.454Z",
+"people": [
+"carrie"
+],
+"things": [
+"cooking"
+],
+"emotions": [
+"joy"
+]
+}
+]
+}
