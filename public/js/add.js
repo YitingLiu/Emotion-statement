@@ -1,30 +1,7 @@
-
-//-------------------------------p5---------------
-var dev=15;
-
-var Emotion=function(pos,emo,c){
-  this.pos=pos.copy();
-  this.emo=emo;
-  this.c=c;
-  this.results = [];
-  
-  this.render=function(){
-    // console.log(this.emo);
-    push();
-    translate(pos.x,pos.y);
-    fill(this.c);
-    for(var i=0;i<5;i++){
-      ellipse(random(-dev,dev),random(-dev,dev),100+2*random(-dev,dev));
-    }
-    var text=createElement("h4",this.emo);
-    text.position(pos.x,pos.y);
-    text.parent('canvasContainer');
-    pop();
-  }
-}
-
-var emotionsText = ["Joy", "Sadness", "Trust", "Fear", "Disgusting", "Satisfied", "Anger", "Surprise", "Anitcipatoin"];
-
+//  JSON
+var emoJSON={"Joy":{"pos":{"x":0.16,"y":0.47},"color":"rgba(255, 224, 130, 0.4)","size":95},"Sadness":{"pos":{"x":0.27,"y":0.61},"color":"rgba(197,225,165,0.4)","size":68},"Trust":{"pos":{"x":0.34,"y":0.37},"color":"rgba(255,204,128,0.4)","size":108},"Fear":{"pos":{"x":0.42,"y":0.56},"color":"rgba(255,171,145,0.4)","size":72},"Disgust":{"pos":{"x":0.54,"y":0.37},"color":"rgba(159,168,218,0.4)","size":91},"Satisfied":{"pos":{"x":0.57,"y":0.6},"color":"rgba(239,154,154,0.4)","size":85},"Anger":{"pos":{"x":0.71,"y":0.47},"color":"rgba(179,157,219,0.4)","size":96},"Surprise":{"pos":{"x":0.86,"y":0.6},"color":"rgba(244,143,177,0.4)","size":90},"Anticipation":{"pos":{"x":0.72,"y":0.25},"color":"rgba(206,147,216,0.4)","size":96}};
+//-------------------------------p5 ---------------
+var emotionsText = ["Joy", "Sadness", "Trust", "Fear", "Disgust", "Satisfied", "Anger", "Surprise", "Anticipation"];
 var colors = [
   "rgba(255, 224, 130, 0.4)",
   "rgba(197,225,165,0.4)",
@@ -37,52 +14,49 @@ var colors = [
   "rgba(206,147,216,0.4)"
 ];
 
+var ps;
+
 function setup(){
   var canvas=createCanvas(window.innerWidth, window.innerHeight);
   canvas.parent('canvasContainer');
   noStroke();
 
-  var emotions=[];
+  ps = new ParticleSystem();
+
   emotionsText.forEach(function(e){
-    var pos = createVector(randomGaussian(width / 2, 200), randomGaussian(height / 2, 200));
-    emotions.push(new Emotion(pos, e, random(colors)));
+    // console.log(emoJSON[e]);
+    var property=emoJSON[e];
+    var pos = createVector(property.pos.x,property.pos.y);
+    ps.addParticle(pos,e,property.color);
   })
-  emotions.forEach(function(e){
-    e.render();
-  })
-
-
-
 //-------------JQuery---------
 
-var selectedEmotions=[];
+  var selectedEmotions=[];
 
-$('h4').click(function(){
-  var e=$(this).html();
-  if($(this).hasClass("selected")){
-    //remove class selected
-    $(this).removeClass('selected');
-    var index=selectedEmotions.indexOf(e);
-    if(index>-1){
-      selectedEmotions.splice(index,1);
+  $('h4').click(function(){
+    var e=$(this).html();
+    if($(this).hasClass("selected")){
+      //remove class selected
+      $(this).removeClass('selected');
+      var index=selectedEmotions.indexOf(e);
+      if(index>-1){
+        selectedEmotions.splice(index,1);
+      }
+    } else{
+      $(this).addClass('selected');
+      selectedEmotions.push(e);
     }
-  } else{
-    $(this).addClass('selected');
-    selectedEmotions.push(e);
-  }
 
-  var emotionInput=document.getElementById('emotionInput');
-  emotionInput.value="";
-  selectedEmotions.forEach(function(e){
-    if(emotionInput.value==""){
-      emotionInput.value += e;
-    } else {
-      emotionInput.value+=","+e;
-    }
+    var emotionInput=document.getElementById('emotionInput');
+    emotionInput.value="";
+    selectedEmotions.forEach(function(e){
+      if(emotionInput.value==""){
+        emotionInput.value += e;
+      } else {
+        emotionInput.value+=","+e;
+      }
+    })
   })
-})
-
-
 
 // function getValue(){
 //   // console.log(event.target);
@@ -99,6 +73,38 @@ $('h4').click(function(){
 //   }
 // }
 
+}
+
+function draw(){
+  clear();
+  ps.run();
+}
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+}
+
+function mouseClicked() {
+  var mousePos=createVector(mouseX/width,mouseY/height);  //percentage!!!
+  for(var i=0;i<ps.particles.length;i++){
+    var e=emotionsText[i];
+    var pos = createVector(emoJSON[e].pos.x,emoJSON[e].pos.y);
+    var distance = p5.Vector.dist(mousePos,pos);
+    console.log(distance);
+    if(distance<0.1){
+      if(ps.particles[i].selected){
+        ps.particles[i].selected=false;
+      }else{
+        ps.particles[i].selected=true;
+      }
+    }
+    // console.log(emoJSON[e]);
+  }
+  // emotionsText.forEach(function(e){
+  //   // console.log(emoJSON[e]);
+  //   var property=emoJSON[e];
+  //   var pos = createVector(property.pos.x,property.pos.y);
+  // })
 }
 
 
