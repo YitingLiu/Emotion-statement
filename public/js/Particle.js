@@ -27,7 +27,7 @@ var Particle = function(pos, emo, c) {
     }
 
     if(this.selected){
-      fill(100);
+      fill(255,60);
     }else{
       fill(255);
     }

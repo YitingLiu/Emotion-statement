@@ -2,13 +2,54 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Timeline</title>
+    <title>Result</title>
+    <style>
+    	body {
+    	    padding: 0; margin: 0;
+    	  }
+    	#analysisPage{
+	        background: #B0EBD5;  
+	        background: -webkit-linear-gradient(-135deg, #B0EBD5, #88C6D8);  
+	        background: -o-linear-gradient(-135deg, #B0EBD5, #88C6D8);   
+	        background: -moz-linear-gradient(-135deg, #B0EBD5, #88C6D8); 
+	        background: linear-gradient(-135deg, #B0EBD5, #88C6D8);
+    	}
+
+    	#recordsPage {
+	    	background: #EDE0AC;  
+	      background: -webkit-linear-gradient(-135deg, #EDE0AC, #CDD785);  
+	      background: -o-linear-gradient(-135deg, #EDE0AC, #CDD785);   
+	      background: -moz-linear-gradient(-135deg, #EDE0AC, #CDD785); 
+	      background: linear-gradient(-135deg, #EDE0AC, #CDD785); 
+    	} 
+    	canvas {vertical-align: top;}
+    	</style>
   </head>
   <body>
-  <h2>Show timeline here!</h2>
-  
+  	<div id="fullpage">
+      <div class="section" id="recordsPage">
+      	  <div id="canvasContainer"></div>
+      </div>
+
+      <div class="section" id="analysisPage">
+      	  <div id="canvasContainer"></div>
+      </div>
+
+    </div>
   </body>
-  <script type="text/javascript">
-    
-  </script>
+    <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script type="text/javascript" src="js/p5.js"></script>
+    <script type="text/javascript" src="js/p5.dom.js"></script>
+    <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/Particle.js"></script>
+    <script src="js/result.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#fullpage').fullpage();
+      });
+    </script>
 </html>

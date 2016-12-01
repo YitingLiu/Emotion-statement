@@ -170,6 +170,7 @@ router.get('/api/get', function(req, res){
 
     // console.log(jsonData.emotions[0].emotions);
 
+    // res.render('.html',jsonData);
     res.json(jsonData);
 
   })
