@@ -27,19 +27,19 @@ var Particle = function(pos, emo, c) {
     // console.log(this.pos);
     // push();
     // translate(this.pos.x, this.pos.y);
-    fill(this.c);
-    rect(this.pos.x, this.pos.y, a / 2, 50);
+    // fill(this.c);
+    // rect(this.pos.x, this.pos.y, a / 2, 50);
 
     // ellipse(0, 0, 100);
     // for (var i = 0; i < 4; i++) {
     //   ellipse(this.dev[i].x, this.dev[i].y, this.dev[i].z);
     // }
 
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textFont("Comfortaa");
-    textSize(25);
-    text(this.emo, this.pos.x, this.pos.y);
+    // fill(255);
+    // textAlign(CENTER, CENTER);
+    // textFont("Comfortaa");
+    // textSize(25);
+    // text(this.emo, this.pos.x, this.pos.y);
 
     // if(this.renderResults && this.noRenderResults){
 
@@ -169,6 +169,9 @@ var resutlParticle = function(position, content) {
     ellipse(0,0, this.size, this.size);
 
     fill(255);
+    textAlign(CENTER, CENTER);
+    textFont("Comfortaa");
+    textSize(20);
     text(this.content,0,0)
 
     pop();
@@ -194,9 +197,9 @@ var resutlParticle = function(position, content) {
       this.velocity.x *= -1;
       this.position.x = this.size/2+30;
     }
-    if (this.position.y > height-this.size/2-130) {
+    if (this.position.y > height-this.size/2-230) {
       this.velocity.y *= -1;
-      this.position.y = height-this.size/2-130;
+      this.position.y = height-this.size/2-230;
     } else if(this.position.y<this.size/2+30){
       this.velocity.y*=-1;
       this.position.y=this.size/2+30;
@@ -239,15 +242,15 @@ var resutlParticle = function(position, content) {
 }
 
 var colors = [
-  "rgba(255, 224, 130, 0.6)",
-  "rgba(197,225,165,0.6)",
-  "rgba(255,204,128,0.6)",
-  "rgba(255,171,145,0.6)",
-  "rgba(159,168,218,0.6)",
-  "rgba(239,154,154,0.6)",
-  "rgba(179,157,219,0.6)",
-  "rgba(244,143,177,0.6)",
-  "rgba(206,147,216,0.6)"
+  "rgba(255, 224, 130, 0.8)",
+  "rgba(197,225,165,0.8)",
+  "rgba(255,204,128,0.8)",
+  "rgba(255,171,145,0.8)",
+  "rgba(159,168,218,0.8)",
+  "rgba(239,154,154,0.8)",
+  "rgba(179,157,219,0.8)",
+  "rgba(244,143,177,0.8)",
+  "rgba(206,147,216,0.8)"
 ];
 
 // String.prototype.replaceAt=function(index, character) {

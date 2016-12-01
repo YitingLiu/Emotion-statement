@@ -16,7 +16,7 @@
     	}
 
     	#recordsPage {
-	    	background: #EDE0AC;  
+	    	background: #8C97A3;  
 	      background: -webkit-linear-gradient(-135deg, #EDE0AC, #CDD785);  
 	      background: -o-linear-gradient(-135deg, #EDE0AC, #CDD785);   
 	      background: -moz-linear-gradient(-135deg, #EDE0AC, #CDD785); 
@@ -28,13 +28,14 @@
   <body>
   	<div id="fullpage">
       <div class="section" id="recordsPage">
-      	  <div id="canvasContainer"></div>
+          <canvas id="barChart" width="1200" height="200" style="position:fixed;bottom:0"></canvas>
+          <div id="canvasContainer"></div>
+
       </div>
 
       <div class="section" id="analysisPage">
       	  <div id="canvasContainer"></div>
       </div>
-
     </div>
   </body>
     <!-- JQuery script -->
@@ -47,10 +48,11 @@
     <script src="js/main.js"></script>
     <script src="js/resultParticle.js"></script>
     <script src="js/result.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function() {
         $('#fullpage').fullpage();
       });
-
     </script>
 </html>

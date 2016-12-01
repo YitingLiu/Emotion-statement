@@ -12,14 +12,14 @@ var getDataFromDB=function(){
 	})
 }
 var ps;
-
+var emotionTypes=[];
 function setup(){ 
+  ps=new ParticleSystem;
+  getDataFromDB();
   var canvas=createCanvas(window.innerWidth, window.innerHeight);
   canvas.parent('canvasContainer');
   noStroke();
-  rectMode(RADIUS);
-  ps=new ParticleSystem;
-  getDataFromDB();
+  // rectMode(RADIUS);
 }
 
 
@@ -37,7 +37,6 @@ steps:5674
 temp:11
 things:Array[1]
 */
-var emotionTypes=[];
 // var propertyLibrary=[{
 // 		"x":0.6,
 // 		"y":0.47,
@@ -84,7 +83,7 @@ function renderEmotions(records){
 	// create particles
 	emotionTypes.forEach(function(e,i){
 	    var property=emoJSON[e];
-	    console.log(e);
+	    // console.log(e);
 	    var a=width/emotionTypes.length;
 	    var pos = createVector(i * a + a / 2,height - 50);
 	    ps.addParticle(pos,e,property.color);
@@ -94,13 +93,15 @@ function renderEmotions(records){
 	ps.assort(records);
 	ps.particles.forEach(function(e){
 		// if(!e.results){
-			console.log(e);
-	})
+		// console.log(e);
+	});
+
+	buildBarChart();
 
 }
 
 function checkMousePosition() {
-	if(mouseY>height-100){
+	if(mouseY>height-200){
 		var num=ps.particles.length;
 		var a=width/num;
 		ps.particles.forEach(function(e,i){
@@ -163,3 +164,84 @@ function windowResized() {
 // {
 //     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 // }
+
+
+function buildBarChart(){
+
+	// a chart can take 2 objects:
+	// 1. data - the data/information (required)
+	// 2. options - chart options (optional)
+	var labellll=[];
+	var dataaaaa=[];
+	var colorrrr=[];
+	ps.particles.forEach(function(e){
+		labellll.push(e.emo);
+		dataaaaa.push(e.results.length);
+		colorrrr.push(e.c);
+	});
+
+	Chart.defaults.global.legend.display = false;
+	Chart.defaults.global.tooltips.enabled=false;
+	Chart.defaults.global.defaultFontFamily = 'Comfortaa';
+
+	var data = {
+	    // chart labels
+	    labels: labellll,//["January", "February", "March", "April", "May"],
+	    // array of datasets to plot
+	    // could be only 1 if there's just 1 dataset
+
+	    datasets: [
+	        {
+	            // label: "My First dataset",
+	            backgroundColor: colorrrr,
+	            // borderColor: "rgba(75,192,192,0.5)",
+	            // borderWidth: 1,
+	            data: dataaaaa
+	        }
+	    ]
+	};
+
+	// create chart options (this is optional)
+	// see list of options:
+	// http://www.chartjs.org/docs/#bar-chart-chart-options
+
+
+	var options = {
+		scales:{
+			xAxes:[{
+				gridLines:{
+					display:false,
+				},
+				barPercentage:1,
+				// position:"bottom",
+				ticks:{
+					fontColor:"#fff",
+					fontSize:20
+				}
+
+			}],
+			yAxes: [{
+                display: false,
+                // barThickness:40,
+                // categoryPercentage:0.8,
+				// barPercentage:0.5,
+				ticks: {
+					beginAtZero:true,
+				}
+            }],
+		}
+	} 
+	// first, get the context of the canvas where we're drawing the chart
+	var ctx = document.getElementById("barChart").getContext("2d");
+	
+	// now, create the bar chart, passing in:
+	// 1. the type (required)
+	// 2. the data (required)
+	// 3. chart options (optional)
+	var myBarChart = new Chart(ctx, {
+	    type: 'bar',
+	    // type: 'horizontalBar', // horizontal bards
+	    data: data,
+	    options: options
+	});
+}
