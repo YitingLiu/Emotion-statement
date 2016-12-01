@@ -298,27 +298,27 @@ router.get('/api/get', function(req, res){
 //  * @return {Object} JSON
 //  */
 
-// router.get('/api/delete/:id', function(req, res){
+router.get('/api/delete/:id', function(req, res){
 
-//   var requestedId = req.params.id;
+  var requestedId = req.params.id;
 
-//   // Mongoose method to remove, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
-//   Animal.findByIdAndRemove(requestedId,function(err, data){
-//     if(err || data == null){
-//       var error = {status:'ERROR', message: 'Could not find that animal to delete'};
-//       return res.json(error);
-//     }
+  // Mongoose method to remove, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
+  Emotion.findByIdAndRemove(requestedId,function(err, data){
+    if(err || data == null){
+      var error = {status:'ERROR', message: 'Could not find that animal to delete'};
+      return res.json(error);
+    }
 
-//     // otherwise, respond back with success
-//     var jsonData = {
-//       status: 'OK',
-//       message: 'Successfully deleted id ' + requestedId
-//     }
+    // otherwise, respond back with success
+    var jsonData = {
+      status: 'OK',
+      message: 'Successfully deleted id ' + requestedId
+    }
 
-//     res.json(jsonData);
+    res.json(jsonData);
 
-//   })
+  })
 
-// })
+})
 
 module.exports = router;

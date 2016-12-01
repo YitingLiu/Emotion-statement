@@ -1,5 +1,7 @@
 var recordsFromDB;
 var getDataFromDB=function(){
+	ps=new ParticleSystem;
+	emotionTypes=[];
 	jQuery.ajax({
 		url : '/api/get',
 		dataType : 'json',
@@ -15,7 +17,6 @@ var getDataFromDB=function(){
 var ps;
 var emotionTypes=[];
 function setup(){ 
-  ps=new ParticleSystem;
   getDataFromDB();
   var canvas=createCanvas(window.innerWidth, window.innerHeight);
   canvas.parent('canvasContainer');
@@ -257,15 +258,35 @@ things:Array[1]
 
 function renderCards(){
 	console.log(records);
+	$('#cardHolder').empty();
 	records.forEach(function(e){
 		var htmlToAdd ='<div class="col-sm-3"><div class="card"><h5>'+e.emotions+
 		'</h5><p><span>Location: </span>'+e.place+'</p><p><span>With </span>'+
 		e.people+'</p><p><span>Activity: </span>'+e.things+'</p><p>'+
 		e.steps+'<span> steps taken</span></p><p><span>Weather: </span>'+
 		e.weather+'</p><p><span>Sleep Quality: </span>'+
-		e.sleepQuality+'%</p><p><span>Sleep for </span>'+e.sleepTime+'h last night</p></div></div>';
+		e.sleepQuality+'%</p><p><span>Sleep for </span>'+e.sleepTime+'h last night</p><button type="button" id="'+
+		e._id+'" onclick="deleteRecord(event)">Delete</button><button type="button" id="'+
+		e._id+'" onclick="editRecord(event)">Edit</button></div></div>';
 		$('#cardHolder').append(htmlToAdd);
 	})
+}
+
+function deleteRecord(){
+	var targetedId = event.target.id;
+	console.log('the record to delete is ' + targetedId);
+
+	// now, let's call the delete route with AJAX
+	jQuery.ajax({
+		url : '/api/delete/'+targetedId,
+		dataType : 'json',
+		success : function(response) {
+			// now, let's re-render the animals
+			getDataFromDB();
+		}
+	})
+
+	event.preventDefault();
 }
 
 // function buildBubbleChart(){
