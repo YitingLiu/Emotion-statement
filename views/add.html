@@ -189,6 +189,7 @@
             <h4 onclick="getValue(event)">Surprise</h4>
             <h4 onclick="getValue(event)">Anitcipation</h4> -->
             <input id="emotionInput" type="text" name="emotions" placeholder="How are you feeling?">
+            <!-- make the input not editable: readonly -->
           </div>
 
           <div class="container-fluid" id="next">
@@ -265,12 +266,29 @@
     <script src="js/main.js"></script>
     <script src="js/Particle.js"></script>
     <script src="js/add.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
         $('#fullpage').fullpage();
       });
-    </script>
 
+        $("form").validate({
+          rules: {
+            emotions: {
+              required: true,
+            },
+            steps: {
+              number: true // must be a number
+            },
+            sleepTime: {
+              number: true // must be a number
+            },
+            temp:{
+              number:true
+            }
+          }
+      }); 
+    </script>
 </html>
 
