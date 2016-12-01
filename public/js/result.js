@@ -260,14 +260,15 @@ function renderCards(){
 	console.log(records);
 	$('#cardHolder').empty();
 	records.forEach(function(e){
-		var htmlToAdd ='<div class="col-sm-3"><div class="card"><h5>'+e.emotions+
-		'</h5><p><span>Location: </span>'+e.place+'</p><p><span>With </span>'+
-		e.people+'</p><p><span>Activity: </span>'+e.things+'</p><p>'+
-		e.steps+'<span> steps taken</span></p><p><span>Weather: </span>'+
-		e.weather+'</p><p><span>Sleep Quality: </span>'+
-		e.sleepQuality+'%</p><p><span>Sleep for </span>'+e.sleepTime+'h last night</p><button type="button" id="'+
-		e._id+'" onclick="deleteRecord(event)">Delete</button><button type="button" id="'+
-		e._id+'" onclick="editRecord(event)">Edit</button></div></div>';
+		var htmlToAdd ='<div class="col-sm-3"><div class="card"><h5 class="emotions">'+e.emotions+'</h5><p>Location: <span class="place">'+
+		e.place+'</span></p><p>With <span class="people">'+
+		e.people+'<span></p><p>Activity: <span class="things">'+
+		e.things+'</span></p><p><span class="steps">'+
+		e.steps+'</span> steps taken</p><p>Weather: <span class="weather">'+
+		e.weather+'</span></p><p>Sleep Quality: <span class="sleepQuality">'+
+		e.sleepQuality+'</span>%</p><p>Sleep for <span class="sleepTime">'+e.sleepTime+'<span>h last night</p><button type="button" id="'+
+		e._id+'" onclick="deleteRecord(event)">Delete</button>';
+		// +'<button type="button" data-toggle="modal" data-target="#editModal"">Edit</button></div></div>';
 		$('#cardHolder').append(htmlToAdd);
 	})
 }
@@ -289,6 +290,36 @@ function deleteRecord(){
 	event.preventDefault();
 }
 
+
+// jQuery('#editModal').on('show.bs.modal', function (e) {
+//   // let's get access to what we just clicked on
+//   var clickedButton = e.relatedTarget;
+//   // now let's get its parent
+// 	var parent = jQuery(clickedButton).parent();
+
+//   // now, let's get the values of the pet that we're wanting to edit
+//   // we do this by targeting specific spans within the parent and pulling out the text
+//   var emotions = $(parent).find('.emotions').text();
+//   var place = $(parent).find('.place').text();
+//   var people = $(parent).find('.people').text();
+//   var things = $(parent).find('.things').text();
+//   var steps= $(parent).find('.steps').text();
+//   var weather= $(parent).find('.weather').text();
+//   var sleepQuality= $(parent).find('.sleepQuality').text();
+//   var sleepTime= $(parent).find('.sleepTime').text();
+//   var id = $(parent).find('.id').text();
+
+//   // now let's set the value of the edit fields to those values
+//  	jQuery("#edit-name").val(name);
+// 	jQuery("#edit-age").val(age);
+// 	jQuery("#editWeight").val(weight);
+// 	jQuery("#edit-tags").val(tags);
+// 	jQuery("#edit-breed").val(breed);
+// 	jQuery("#edit-url").val(url);
+// 	jQuery("#edit-location").val(location);
+// 	jQuery("#edit-id").val(id);
+
+// })
 // function buildBubbleChart(){
 // 	var data = {
 //     datasets: [
