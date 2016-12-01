@@ -3,10 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <title>Result</title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
     <style>
     	body {
     	    padding: 0; margin: 0;
-    	  }
+          font-family: Comfortaa;
+      }
+      
+      h5 {
+        font-size:20px;
+        font-weight: 300;
+        color: white;
+      }
+
+      p span{
+        font-weight: 400;
+      }
+
     	#analysisPage{
 	        background: #B0EBD5;  
 	        background: -webkit-linear-gradient(-135deg, #B0EBD5, #88C6D8);  
@@ -22,20 +37,105 @@
 	      background: -moz-linear-gradient(-135deg, #EDE0AC, #CDD785); 
 	      background: linear-gradient(-135deg, #EDE0AC, #CDD785); 
     	} 
+      .col-sm-3 {
+        margin-top: 15px;
+        padding: 10px;
+
+      }
+      .card {
+        padding:10px;
+        padding-left: 15px;
+        background-color:rgba(255,255,255,0.2);
+        border-radius: 5px;
+        color:grey;
+      }
     	canvas {vertical-align: top;}
-    	</style>
+    
+    </style>
   </head>
   <body>
   	<div id="fullpage">
       <div class="section" id="recordsPage">
-          <canvas id="barChart" width="1200" height="200" style="position:fixed;bottom:0"></canvas>
+          <canvas id="barChart" width="1200" height="200" style="position:fixed;bottom:2%"></canvas>
           <div id="canvasContainer"></div>
-
       </div>
-
+<!-- {
+"_id": "5838c968906e950f3f875da0",
+"place": "soho",
+"steps": 5674,
+"sleepTime": 9.44,
+"weather": "cloudy",
+"temp": 11,
+"__v": 0,
+"date": "2016-11-25T23:29:44.716Z",
+"people": [
+"nobody"
+],
+"things": [
+"shopping"
+],
+"emotions": [
+"joy",
+"surprise"
+]
+}, -->
       <div class="section" id="analysisPage">
-      	  <div id="canvasContainer"></div>
+        <div class="container-fluid" id="cardHolder">
+<!--           <div class="col-sm-3">
+            <div class="card">
+              <h5>joy,surprise</h5>
+              <p><span>Location: </span>soho</p>
+              <p><span>With </span>nobody</p>
+              <p><span>Activity: </span>shopping</p>
+              <p>3453<span> steps taken</span></p>
+              <p><span>Weather: </span>clody</p>
+              <p><span>Sleep Quality: </span>80%</p>
+              <p><span>Sleep for </span>7.5h last night</p>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="card">
+              <h5>joy,surprise</h5>
+              <p><span>Location: </span>soho</p>
+              <p><span>With </span>nobody</p>
+              <p><span>Activity: </span>shopping</p>
+              <p>3453<span> steps taken</span></p>
+              <p><span>Weather: </span>clody</p>
+              <p><span>Sleep Quality: </span>80%</p>
+              <p><span>Sleep for </span>7.5h last night</p>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="card">
+              <h5>joy,surprise</h5>
+              <p><span>Location: </span>soho</p>
+              <p><span>With </span>nobody</p>
+              <p><span>Activity: </span>shopping</p>
+              <p>3453<span> steps taken</span></p>
+              <p><span>Weather: </span>clody</p>
+              <p><span>Sleep Quality: </span>80%</p>
+              <p><span>Sleep for </span>7.5h last night</p>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="card">
+              <h5>joy,surprise</h5>
+              <p><span>Location: </span>soho</p>
+              <p><span>With </span>nobody</p>
+              <p><span>Activity: </span>shopping</p>
+              <p>3453<span> steps taken</span></p>
+              <p><span>Weather: </span>clody</p>
+              <p><span>Sleep Quality: </span>80%</p>
+              <p><span>Sleep for </span>7.5h last night</p>
+            </div>
+          </div> -->
+
+        </div>
       </div>
+
     </div>
   </body>
     <!-- JQuery script -->

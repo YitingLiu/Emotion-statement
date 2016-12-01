@@ -56,8 +56,7 @@ router.post('/api/create', function(req, res){
     
     var date = req.body.date;
     var steps = req.body.steps;    
-    var sleepQuality = req.body.date;
-    var sleepQuality = req.body.date;
+    var sleepQuality = req.body.sleepQuality;
     var sleepTime = req.body.sleepTime;    
     var weather = req.body.weather.toLowerCase();
     var temp = req.body.temp;    
@@ -72,12 +71,9 @@ router.post('/api/create', function(req, res){
       place: place,
 
       date: date,
-
       steps: steps,
-
       sleepQuality: sleepQuality,
       sleepTime: sleepTime,
-
       weather: weather,
       temp:temp
     };

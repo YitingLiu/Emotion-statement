@@ -8,6 +8,7 @@ var getDataFromDB=function(){
 			records=response.record;
 			// console.log(records);
 			renderEmotions(records);
+
 		}
 	})
 }
@@ -19,6 +20,8 @@ function setup(){
   var canvas=createCanvas(window.innerWidth, window.innerHeight);
   canvas.parent('canvasContainer');
   noStroke();
+
+
   // rectMode(RADIUS);
 }
 
@@ -28,15 +31,7 @@ function draw(){
 	checkMousePosition();
 	ps.run();
 }
-/*
-emotions:Array[2]
-people:Array[1]
-place:"soho"
-sleepTime:9.44
-steps:5674
-temp:11
-things:Array[1]
-*/
+
 // var propertyLibrary=[{
 // 		"x":0.6,
 // 		"y":0.47,
@@ -97,6 +92,7 @@ function renderEmotions(records){
 	});
 
 	buildBarChart();
+	renderCards();
 
 }
 
@@ -171,6 +167,7 @@ function buildBarChart(){
 	// a chart can take 2 objects:
 	// 1. data - the data/information (required)
 	// 2. options - chart options (optional)
+
 	var labellll=[];
 	var dataaaaa=[];
 	var colorrrr=[];
@@ -231,6 +228,7 @@ function buildBarChart(){
             }],
 		}
 	} 
+
 	// first, get the context of the canvas where we're drawing the chart
 	var ctx = document.getElementById("barChart").getContext("2d");
 	
@@ -245,3 +243,65 @@ function buildBarChart(){
 	    options: options
 	});
 }
+
+
+/*
+emotions:Array[2]
+people:Array[1]
+place:"soho"
+sleepTime:9.44
+steps:5674
+temp:11
+things:Array[1]
+*/
+
+function renderCards(){
+	console.log(records);
+	records.forEach(function(e){
+		var htmlToAdd ='<div class="col-sm-3"><div class="card"><h5>'+e.emotions+
+		'</h5><p><span>Location: </span>'+e.place+'</p><p><span>With </span>'+
+		e.people+'</p><p><span>Activity: </span>'+e.things+'</p><p>'+
+		e.steps+'<span> steps taken</span></p><p><span>Weather: </span>'+
+		e.weather+'</p><p><span>Sleep Quality: </span>'+
+		e.sleepQuality+'%</p><p><span>Sleep for </span>'+e.sleepTime+'h last night</p></div></div>';
+		$('#cardHolder').append(htmlToAdd);
+	})
+}
+
+// function buildBubbleChart(){
+// 	var data = {
+//     datasets: [
+//         {
+//             label: 'First Dataset',
+//             data: [
+//                 {
+//                     x: 20,
+//                     y: 30,
+//                     r: 15
+//                 },
+//                 {
+//                     x: 40,
+//                     y: 10,
+//                     r: 10
+//                 }
+//             ],
+//             backgroundColor:"#FF6384",
+//             hoverBackgroundColor: "#FF6384",
+//         }]
+// 	};
+// 	var options={
+// 	        elements: {
+// 	            points: {
+// 	                borderWidth: 1,
+// 	                borderColor: 'rgb(0, 0, 0)'
+// 	            }
+// 	        }
+// 	    };
+
+// 	var ctx = document.getElementById("bubbleChart").getContext("2d");
+// 	var myBubbleChart = new Chart(ctx,{
+// 	    type:"bubble",
+// 	    data:data,
+// 	    options: options
+// 	});
+// }
